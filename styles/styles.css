@@ -1,0 +1,16 @@
+/* 
+    Document   : styles
+    Created on : 07-Feb-2012, 21:17:13
+    Author     : art
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+    display: block;
+}
+
+#missing-volumes {
+    color: red;
+}
+

@@ -1,0 +1,3 @@
+RANKINGS
+get rid of sitelinks and universal search trash from rankings
+add query delayer
