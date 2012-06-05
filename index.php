@@ -15,6 +15,12 @@
         $ga_email = $_POST["email"];
         $ga_password = $_POST["password"];
         $ga_profileid_temp = explode("(", $_POST["profileid"]);
+        
+        //302 to the login page if login credentials not set
+        if (empty($ga_email) || empty($ga_password) || empty($ga_profileid_temp)) {
+            echo '<script type="text/javascript">window.location = "ga-login.php"</script>';
+        }
+        
         $ga_profileid = str_replace(")", "", $ga_profileid_temp[1]);
         echo $ga_email;
         echo $ga_password;
@@ -29,12 +35,7 @@
             <input name="profileid" type="hidden" value="<?php echo $ga_profileid; ?>" />
             Start Date: <input type="text" name="startdate" id="startdate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" />
             End Date: <input type="text" name="enddate" id="enddate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" />
-            Domain name: <select name="domaintocheck" id="domaintocheck">
-                <option>medilaseraesthetics.co.uk</option>
-                <option>kia.co.uk</option>
-                <option>Mercedes</option>
-                <option>Audi</option>
-            </select>
+            Domain name: <input type="text" name="domaintocheck" id="domaintocheck" />
             Max results: <input type="text" name="maxresult" id="maxresult" value="10" />
             <button type="button" onclick="loadXMLDoc3('-visits')">Change Content</button>
             <button type="button" onclick="loadXMLDoc4()">Update CTRs</button>

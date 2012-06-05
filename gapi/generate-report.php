@@ -13,14 +13,67 @@ $maxresult = $_GET["maxresult"];
 $start_index = 1;
 
 //how many seconds to wait before quering the next keyword in Google
-$ranking_check_delay = 5;
+$ranking_check_delay = rand(30,90);
 
 require 'gapi.class.php';
 require('../rankings/get-rankings.php');
 require('../mysql/my-sql-comms.php');
 
 $ga = new gapi($ga_email, $ga_password);
-$filter = 'medium == organic && keyword != (not provided) && keyword !@ kia';
+$filter = 'medium == organic && keyword != (not provided) && keyword =@ east midlands trains';
+$ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_metric, $filter, $start_date = $_GET["startdate"], $end_date = $_GET["enddate"], $start_index, $maxresult);
+?>
+<p>Data from <?php echo $_GET["startdate"] ?> to <?php echo $_GET["enddate"] ?>.</p>
+<table>
+    <tr>
+        <th><a href="#" onclick="loadXMLDoc3('keyword')">Keyword</a></th>
+        <th><a href="#" onclick="loadXMLDoc3('-visits')">Visits</a></th>
+        <th><a href="#" >Ranking</a></th>
+    </tr>
+    <?php
+    //create MySQL table for storing daily keywords, visits and ranking results
+    createKeywordVisitsRankingsMySQLTable($ga_profile_id);
+
+    //create MySQL table for storing keywords and their search volumes
+    createKeywordVolumesMySQLTable($ga_profile_id);
+
+    //print results
+    foreach ($ga->getResults() as $result):
+        ?>
+        <tr>
+            <td>
+                <?php
+                //store in DB
+                echo $result;
+                ?>
+            </td>
+            <td>
+                <?php
+                //store in DB
+                $visits = $result->getVisits();
+                echo $visits;
+                ?>
+            </td>
+            <td>
+                <?php
+                $ranking = getRanking($result, $ga_site_domain);
+                echo $ranking;
+                sleep($ranking_check_delay);
+                ?>
+            </td>
+        </tr>
+        <?php
+        //insert results into the DB (if ranking is not 0)
+        //if ($ranking != 0) {
+            insertIntoKeywordVisitsRankingsMySQLTable($result, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+        //}
+    endforeach
+    ?>
+</table>
+
+<?php
+$ga = new gapi($ga_email, $ga_password);
+$filter = 'medium == organic && keyword != (not provided) && keyword != east midlands trains && keyword != emt';
 $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_metric, $filter, $start_date = $_GET["startdate"], $end_date = $_GET["enddate"], $start_index, $maxresult);
 ?>
 <p>Data from <?php echo $_GET["startdate"] ?> to <?php echo $_GET["enddate"] ?>.</p>
