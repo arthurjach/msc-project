@@ -32,7 +32,16 @@
             <input name="profileid" type="hidden" value="<?php echo $ga_profileid; ?>" />
             Start Date: <input type="text" name="startdate" id="startdate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" /><br />
             End Date: <input type="text" name="enddate" id="enddate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" /><br />
-            Domain name: <input type="text" name="domaintocheck" id="domaintocheck" /><br />
+            <!-- Domain name: <input type="text" name="domaintocheck" id="domaintocheck" />--><br />
+            Domain name:
+            <select name="domaintocheck" id="domaintocheck">
+                <option>kia.co.uk</option>
+                <option>nationalexpress.com</option>
+                <option>sunlifedirect.co.uk</option>
+                <option>eastmidlandstrains.co.uk</option>
+                <option>mazumamobile.com</option>
+                <option>eastcoast.co.uk</option>
+            </select> <br />
             Max results: <input type="text" name="maxresult" id="maxresult" value="10" /><br />
             <button type="button" onclick="loadXMLDoc3('-visits')">Extract Visits and Rankings</button>
             <button type="button" onclick="loadXMLDoc4()">Update CTRs</button>
