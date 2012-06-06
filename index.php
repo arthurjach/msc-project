@@ -22,22 +22,19 @@
         }
         
         $ga_profileid = str_replace(")", "", $ga_profileid_temp[1]);
-        echo $ga_email;
-        echo $ga_password;
-        echo $ga_profileid;
-        //now set the cookie
         ?>
-
-        <h1>GAPI php GA extraction</h1>
+        
+        <h1>Click-through rate extraction tool</h1>
+        <p>Current profile: <?php echo $ga_profileid_temp[0] ?> (<?php echo $ga_profileid ?>)</p>
         <form name="getugc" method="get" action="gapi/generate-report.php">
             <input name="email" type="hidden" value="<?php echo $ga_email; ?>" />
             <input name="password" type="hidden" value="<?php echo $ga_password; ?>" />
             <input name="profileid" type="hidden" value="<?php echo $ga_profileid; ?>" />
-            Start Date: <input type="text" name="startdate" id="startdate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" />
-            End Date: <input type="text" name="enddate" id="enddate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" />
-            Domain name: <input type="text" name="domaintocheck" id="domaintocheck" />
-            Max results: <input type="text" name="maxresult" id="maxresult" value="10" />
-            <button type="button" onclick="loadXMLDoc3('-visits')">Change Content</button>
+            Start Date: <input type="text" name="startdate" id="startdate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" /><br />
+            End Date: <input type="text" name="enddate" id="enddate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" /><br />
+            Domain name: <input type="text" name="domaintocheck" id="domaintocheck" /><br />
+            Max results: <input type="text" name="maxresult" id="maxresult" value="10" /><br />
+            <button type="button" onclick="loadXMLDoc3('-visits')">Extract Visits and Rankings</button>
             <button type="button" onclick="loadXMLDoc4()">Update CTRs</button>
         </form>
         <div id="myDiv"></div>
