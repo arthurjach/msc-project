@@ -13,7 +13,7 @@ $maxresult = $_GET["maxresult"];
 $start_index = 1;
 
 //how many seconds to wait before quering the next keyword in Google
-$ranking_check_delay = rand(10,20);
+$ranking_check_delay = 30;
 
 require 'gapi.class.php';
 require 'gapi-query-filters-factory.php';
@@ -59,6 +59,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
                 <?php
                 $ranking = getRanking($result, $ga_site_domain);
                 echo $ranking;
+                $ranking_check_delay = rand(30,90);
                 sleep($ranking_check_delay);
                 ?>
             </td>
@@ -112,6 +113,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
                 <?php
                 $ranking = getRanking($result, $ga_site_domain);
                 echo $ranking;
+                $ranking_check_delay = rand(30,90);
                 sleep($ranking_check_delay);
                 ?>
             </td>
