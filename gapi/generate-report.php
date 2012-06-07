@@ -15,6 +15,8 @@ $start_index = 1;
 //how many seconds to wait before quering the next keyword in Google
 $ranking_check_delay = 30;
 
+$is_brand = 1;
+
 require 'gapi.class.php';
 require 'gapi-query-filters-factory.php';
 require('../rankings/get-rankings.php');
@@ -22,6 +24,7 @@ require('../mysql/my-sql-comms.php');
 
 $ga = new gapi($ga_email, $ga_password);
 $filter = getQueryFilterBrandKeyword($ga_profile_id);
+$is_brand = 1;
 $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_metric, $filter, $start_date = $_GET["startdate"], $end_date = $_GET["enddate"], $start_index, $maxresult);
 ?>
 <p>Data from <?php echo $_GET["startdate"] ?> to <?php echo $_GET["enddate"] ?>.</p>
@@ -67,7 +70,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
         <?php
         //insert results into the DB (if ranking is not 0)
         //if ($ranking != 0) {
-            insertIntoKeywordVisitsRankingsMySQLTable($result, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+            insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
         //}
     endforeach
     ?>
@@ -76,6 +79,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
 <?php
 $ga = new gapi($ga_email, $ga_password);
 $filter = getQueryFilterNonBrandKeyword($ga_profile_id);
+$is_brand = 0;
 $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_metric, $filter, $start_date = $_GET["startdate"], $end_date = $_GET["enddate"], $start_index, $maxresult);
 ?>
 <p>Data from <?php echo $_GET["startdate"] ?> to <?php echo $_GET["enddate"] ?>.</p>
@@ -121,7 +125,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
         <?php
         //insert results into the DB (if ranking is not 0)
         //if ($ranking != 0) {
-            insertIntoKeywordVisitsRankingsMySQLTable($result, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+            insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
         //}
     endforeach
     ?>
