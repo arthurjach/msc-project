@@ -17,6 +17,7 @@ function createKeywordVisitsRankingsMySQLTable($ga_profile_id) {
     global $link;
     $sql = "CREATE TABLE IF NOT EXISTS keyword_visits_rankings_$ga_profile_id (
             keyword VARCHAR(50) NOT NULL,
+            is_brand TINYINT(1) NOT NULL,
             date DATE NOT NULL,
             visits INT NOT NULL,
             ranking INT NOT NULL,
@@ -28,9 +29,9 @@ function createKeywordVisitsRankingsMySQLTable($ga_profile_id) {
 }
 
 //Add new records to the keyword_visits_rankings table
-function insertIntoKeywordVisitsRankingsMySQLTable($keyword, $date, $visits, $ranking, $ga_profile_id) {
+function insertIntoKeywordVisitsRankingsMySQLTable($keyword, $is_brand, $date, $visits, $ranking, $ga_profile_id) {
     global $link;
-    $sql = "INSERT INTO keyword_visits_rankings_$ga_profile_id (keyword,date,visits,ranking,click_through_rate) VALUES ('$keyword', $date, '$visits', '$ranking',null);";
+    $sql = "INSERT INTO keyword_visits_rankings_$ga_profile_id (keyword, is_brand, date,visits,ranking,click_through_rate) VALUES ('$keyword', '$is_brand', $date, '$visits', '$ranking',null);";
     mysqli_query($link, $sql);
 }
 
