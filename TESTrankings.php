@@ -29,7 +29,7 @@ function getRanking($query, $domain) {
 function getSitelinks($content) {
     $link = array();
     $links_line = preg_split('/\<a class=\"sla\" href=\"/', $content, -1, PREG_SPLIT_NO_EMPTY);
-    //print_r($links_line);
+//print_r($links_line);
     $link_tag = array_slice(getLink($links_line), 1);
     $link = getLinkURL($link_tag);
     return $link;
@@ -38,9 +38,8 @@ function getSitelinks($content) {
 function getPaidSearchAds($content) {
     $link = array();
     $links_line = preg_split('/\<cite>/', $content, -1, PREG_SPLIT_NO_EMPTY);
-    $link_tag = array_slice(getLink($links_line), 1);
-    print_r($link_tag);
-    $link = getLinkURL($link_tag);
+    $link_tag = array_slice($links_line, 1);
+    $link = getLink2($link_tag);
     return $link;
 }
 
@@ -58,10 +57,10 @@ function cleanseSitelinkURLs($numsitelinks) {
     return $sitelinks;
 }
 
-$content = getRanking('kia cars', 'www.kia.co.uk');
+$content = getRanking('sunlife direct', 'www.sunlifedirect.co.uk');
 
 $number_of_sitelinks = getSitelinks($content);
-echo "# of sitelinks for the query '$q' : " . count($number_of_sitelinks) . "<br /><br />";
+echo "<h4># of sitelinks for the query '$q' : " . count($number_of_sitelinks) . "</h4>";
 
 echo "Sitelink destination URLs for the query $q:";
 $urls_of_sitelinks = cleanseSitelinkURLs($number_of_sitelinks);
@@ -69,5 +68,13 @@ foreach ($urls_of_sitelinks as $value) {
     echo "<br />$value";
 }
 
-getPaidSearchAds($content);
+echo "<hr />";
+$urls_of_ppc_ads = getPaidSearchAds($content);
+echo "<h4># of PPC adc for query $q: " . count($urls_of_ppc_ads) . "</h4>";
+
+echo "PPC ad destination URLs for the query $q:";
+foreach ($urls_of_ppc_ads as $value) {
+    echo "<br />$value";
+}
+
 ?>

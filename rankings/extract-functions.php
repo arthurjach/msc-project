@@ -18,6 +18,19 @@ function getLink($in) {
     return $readylinks;
 }
 
+function getLink2($in) {
+    $counterlink = 1;
+    $readylinks = array();
+    foreach ($in as $val) {
+        if (preg_match("/(.*)<\/cite><\/li>/", $val, $lin)) {
+            $onelink[$counterlink] = $lin[1];
+            $readylinks[$counterlink] = strip_tags($onelink[$counterlink]);
+            $counterlink++;
+        }
+    }
+    return $readylinks;
+}
+
 function getLinkURL($in) {
     $counterlink = 0;
     $readylinkurl = array();
