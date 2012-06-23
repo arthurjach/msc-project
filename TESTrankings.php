@@ -4,10 +4,9 @@ require('/rankings/extract-functions.php');
 
 $q = '';
 
-function getRanking($query, $domain) {
+function getSearchResultContent($query, $domain) {
     global $q;
     $q = $query;
-    $ranking_position = 0;
     if (isset($query) && isset($domain)) {
         $query = cleanseSearchQuery($query);
         $url = "http://www.google.co.uk/search?q=$query&num=20&hl=en";
@@ -24,6 +23,24 @@ function getRanking($query, $domain) {
         }
     }
     return $content;
+}
+
+function getRanking($content, $domain) {
+    $link = array();
+    $ranking_position = 0;
+    $links_line = preg_split('/\<h3 class=\"r\"><a href=\"/', $content, -1, PREG_SPLIT_NO_EMPTY);
+    $link_tag = array_slice(getLink($links_line), 1);
+    $link = getLinkURL($link_tag);
+
+    $counter = 1;
+    foreach ($link as $value) {
+        if (strpos($value, $domain)) {
+            $ranking_position = $counter;
+            break;
+        } else
+            $counter++;
+    }
+    return $ranking_position;
 }
 
 function getSitelinks($content) {
@@ -57,7 +74,9 @@ function cleanseSitelinkURLs($numsitelinks) {
     return $sitelinks;
 }
 
-$content = getRanking('sunlife direct', 'www.sunlifedirect.co.uk');
+$content = getSearchResultContent('sunlife direct', 'www.sunlifedirect.co.uk');
+
+echo "<h4># ranking position for the query '$q' : " . getRanking($content, 'www.sunlifedirect.co.uk') . "</h4>";
 
 $number_of_sitelinks = getSitelinks($content);
 echo "<h4># of sitelinks for the query '$q' : " . count($number_of_sitelinks) . "</h4>";
@@ -76,5 +95,4 @@ echo "PPC ad destination URLs for the query $q:";
 foreach ($urls_of_ppc_ads as $value) {
     echo "<br />$value";
 }
-
 ?>
