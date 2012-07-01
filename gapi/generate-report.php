@@ -71,13 +71,15 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
             <td>
                 <?php
                 $sitelinks = getSitelinks($search_results);
-                echo countAllSitelinks($sitelinks);
+                $num_of_sitelinks = countAllSitelinks($sitelinks);
+                echo $num_of_sitelinks;
                 ?>
             </td>
             <td>
                 <?php
                 $all_ppc_ad_urls = getPaidSearchAds($search_results);
-                echo countAllPpcAd($all_ppc_ad_urls);
+                $num_of_ppc_ads = countAllPpcAd($all_ppc_ad_urls);
+                echo $num_of_ppc_ads;
                 ?>
             </td>
             <td>
@@ -93,7 +95,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
         sleep($ranking_check_delay);
         //insert results into the DB (if ranking is not 0)
         //if ($ranking != 0) {
-        insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+        insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $num_of_sitelinks, $num_of_ppc_ads, $own_ppc_ad_found, $ga_profile_id);
     //}
     endforeach
     ?>
@@ -149,13 +151,15 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
             <td>
                 <?php
                 $sitelinks = getSitelinks($search_results);
-                echo countAllSitelinks($sitelinks);
+                $num_of_sitelinks = countAllSitelinks($sitelinks);
+                echo $num_of_sitelinks;
                 ?>
             </td>
             <td>
                 <?php
                 $all_ppc_ad_urls = getPaidSearchAds($search_results);
-                echo countAllPpcAd($all_ppc_ad_urls);
+                $num_of_ppc_ads = countAllPpcAd($all_ppc_ad_urls);
+                echo $num_of_ppc_ads;
                 ?>
             </td>
             <td>
@@ -171,7 +175,7 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
         sleep($ranking_check_delay);
         //insert results into the DB (if ranking is not 0)
         //if ($ranking != 0) {
-        insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+        insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $num_of_sitelinks, $num_of_ppc_ads, $own_ppc_ad_found, $ga_profile_id);
     //}
     endforeach
     ?>

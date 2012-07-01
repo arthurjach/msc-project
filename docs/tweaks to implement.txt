@@ -1,3 +1,5 @@
 RANKINGS
-get rid of sitelinks and universal search trash from rankings
-add query delayer
+
+DB curret dat - 1!
+
+CTRs - search volume maybe shouldn't be divided equally for each day?

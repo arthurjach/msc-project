@@ -21,6 +21,9 @@ function createKeywordVisitsRankingsMySQLTable($ga_profile_id) {
             date DATE NOT NULL,
             visits INT NOT NULL,
             ranking INT NOT NULL,
+            number_of_sitelinks INT NOT NULL,
+            number_of_ppc_ads INT NOT NULL,
+            is_own_ppc_ad INT NOT NULL,
             click_through_rate FLOAT,
             primary key (keyword,date)
             );";
@@ -29,9 +32,9 @@ function createKeywordVisitsRankingsMySQLTable($ga_profile_id) {
 }
 
 //Add new records to the keyword_visits_rankings table
-function insertIntoKeywordVisitsRankingsMySQLTable($keyword, $is_brand, $date, $visits, $ranking, $ga_profile_id) {
+function insertIntoKeywordVisitsRankingsMySQLTable($keyword, $is_brand, $date, $visits, $ranking, $num_of_sitelinks, $num_of_ppc_ads, $own_ppc_ad_found, $ga_profile_id) {
     global $link;
-    $sql = "INSERT INTO keyword_visits_rankings_$ga_profile_id (keyword, is_brand, date,visits,ranking,click_through_rate) VALUES ('$keyword', '$is_brand', $date, '$visits', '$ranking',null);";
+    $sql = "INSERT INTO keyword_visits_rankings_$ga_profile_id (keyword, is_brand, date,visits,ranking, number_of_sitelinks, number_of_ppc_ads, is_own_ppc_ad, click_through_rate) VALUES ('$keyword', '$is_brand', $date, '$visits', '$ranking', '$num_of_sitelinks', '$num_of_ppc_ads', '$own_ppc_ad_found',null);";
     mysqli_query($link, $sql);
 }
 
