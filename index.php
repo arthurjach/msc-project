@@ -15,15 +15,15 @@
         $ga_email = $_POST["email"];
         $ga_password = $_POST["password"];
         $ga_profileid_temp = explode("(", $_POST["profileid"]);
-        
+
         //302 to the login page if login credentials not set
         if (empty($ga_email) || empty($ga_password) || empty($ga_profileid_temp)) {
             echo '<script type="text/javascript">window.location = "ga-login.php"</script>';
         }
-        
+
         $ga_profileid = str_replace(")", "", $ga_profileid_temp[1]);
         ?>
-        
+
         <h1>Click-through rate extraction tool</h1>
         <p>Current profile: <?php echo $ga_profileid_temp[0] ?> (<?php echo $ga_profileid ?>)</p>
         <form name="getugc" method="get" action="gapi/generate-report.php">
@@ -46,9 +46,13 @@
             <button type="button" onclick="loadXMLDoc3('-visits')">Extract Visits and Rankings</button>
             <button type="button" onclick="loadXMLDoc4()">Update CTRs</button>
         </form>
+
+        <hr />
+
         <div id="myDiv"></div>
         <div id="myDiv2"></div>
-        <hr />
+
+
 
         <!-- 
         <h1>JavaScript GA Authentication and Extraction</h1>
