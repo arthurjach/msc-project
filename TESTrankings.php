@@ -3,7 +3,7 @@
 require('/rankings/extract-functions.php');
 
 $q = '';
-$d = 'www.kia.co.uk';
+$d = 'www.sunlifedirect.co.uk';
 
 function getSearchResultContent($query, $domain) {
     global $q;
@@ -87,9 +87,9 @@ function checkForOwnPpcAd($urls_of_ppc_ads, $d) {
     return $url_found;
 }
 
-$content = getSearchResultContent('kia cars', 'www.kia.co.uk');
+$content = getSearchResultContent('sunlife direct', $d);
 
-echo "<h4># ranking position for the query '$q' : " . getRanking($content, 'www.kia.co.uk') . "</h4>";
+echo "<h4># ranking position for the query '$q' : " . getRanking($content, $d) . "</h4>";
 
 $number_of_sitelinks = getSitelinks($content);
 echo "<h4># of sitelinks for the query '$q' : " . count($number_of_sitelinks) . "</h4>";

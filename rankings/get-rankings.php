@@ -71,6 +71,10 @@ function cleanseSitelinkURLs($numsitelinks) {
     return $sitelinks;
 }
 
+function countAllSitelinks($sitelinks) {
+    return count($sitelinks);
+}
+
 function checkForOwnPpcAd($urls_of_ppc_ads, $d) {
     $url_found = 0;
     foreach ($urls_of_ppc_ads as $value) {
@@ -79,6 +83,10 @@ function checkForOwnPpcAd($urls_of_ppc_ads, $d) {
         }
     }
     return $url_found;
+}
+
+function countAllPpcAd($urls_of_ppc_ads) {
+    return count($urls_of_ppc_ads);
 }
 
 /* function getRanking($query, $domain) {

@@ -28,11 +28,14 @@ $is_brand = 1;
 $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_metric, $filter, $start_date = $_GET["startdate"], $end_date = $_GET["enddate"], $start_index, $maxresult);
 ?>
 <p>Data from <?php echo $_GET["startdate"] ?> to <?php echo $_GET["enddate"] ?>.</p>
-<table>
+<table border="1">
     <tr>
         <th><a href="#" onclick="loadXMLDoc3('keyword')">Keyword</a></th>
         <th><a href="#" onclick="loadXMLDoc3('-visits')">Visits</a></th>
         <th><a href="#" >Ranking</a></th>
+        <th><a href="#" ># of Organic Sitelinks</a></th>
+        <th><a href="#" ># of PPC Ads</a></th>
+        <th><a href="#" >Own PPC Ad Found</a></th>
     </tr>
     <?php
     //create MySQL table for storing daily keywords, visits and ranking results
@@ -63,20 +66,35 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
                 $search_results = getSearchResultContent($result, $ga_site_domain);
                 $ranking = getRanking($search_results, $ga_site_domain);
                 echo $ranking;
-                $sitelinks = count(getSitelinks($search_results));
+                ?>
+            </td>
+            <td>
+                <?php
+                $sitelinks = getSitelinks($search_results);
+                echo countAllSitelinks($sitelinks);
+                ?>
+            </td>
+            <td>
+                <?php
                 $all_ppc_ad_urls = getPaidSearchAds($search_results);
+                echo countAllPpcAd($all_ppc_ad_urls);
+                ?>
+            </td>
+            <td>
+                <?php
                 $own_ppc_ad_found = checkForOwnPpcAd($all_ppc_ad_urls, $ga_site_domain);
-                echo "\t".$own_ppc_ad_found;
-                $ranking_check_delay = rand(30,60);
-                sleep($ranking_check_delay);
+                echo $own_ppc_ad_found;
                 ?>
             </td>
         </tr>
         <?php
+        //delay before querying google again
+        $ranking_check_delay = rand(30, 60);
+        sleep($ranking_check_delay);
         //insert results into the DB (if ranking is not 0)
         //if ($ranking != 0) {
-            insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
-        //}
+        insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+    //}
     endforeach
     ?>
 </table>
@@ -88,11 +106,14 @@ $is_brand = 0;
 $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_metric, $filter, $start_date = $_GET["startdate"], $end_date = $_GET["enddate"], $start_index, $maxresult);
 ?>
 <p>Data from <?php echo $_GET["startdate"] ?> to <?php echo $_GET["enddate"] ?>.</p>
-<table>
+<table border="1">
     <tr>
         <th><a href="#" onclick="loadXMLDoc3('keyword')">Keyword</a></th>
         <th><a href="#" onclick="loadXMLDoc3('-visits')">Visits</a></th>
         <th><a href="#" >Ranking</a></th>
+        <th><a href="#" ># of Organic Sitelinks</a></th>
+        <th><a href="#" ># of PPC Ads</a></th>
+        <th><a href="#" >Own PPC Ad Found</a></th>
     </tr>
     <?php
     //create MySQL table for storing daily keywords, visits and ranking results
@@ -123,17 +144,35 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
                 $search_results = getSearchResultContent($result, $ga_site_domain);
                 $ranking = getRanking($search_results, $ga_site_domain);
                 echo $ranking;
-                $sitelinks = count(getSitelinks($search_results));
-                $ranking_check_delay = rand(30,60);
-                sleep($ranking_check_delay);
+                ?>
+            </td>
+            <td>
+                <?php
+                $sitelinks = getSitelinks($search_results);
+                echo countAllSitelinks($sitelinks);
+                ?>
+            </td>
+            <td>
+                <?php
+                $all_ppc_ad_urls = getPaidSearchAds($search_results);
+                echo countAllPpcAd($all_ppc_ad_urls);
+                ?>
+            </td>
+            <td>
+                <?php
+                $own_ppc_ad_found = checkForOwnPpcAd($all_ppc_ad_urls, $ga_site_domain);
+                echo $own_ppc_ad_found;
                 ?>
             </td>
         </tr>
         <?php
+        //delay before querying google again
+        $ranking_check_delay = rand(30, 60);
+        sleep($ranking_check_delay);
         //insert results into the DB (if ranking is not 0)
         //if ($ranking != 0) {
-            insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
-        //}
+        insertIntoKeywordVisitsRankingsMySQLTable($result, $is_brand, 'CURRENT_DATE', $visits, $ranking, $ga_profile_id);
+    //}
     endforeach
     ?>
 </table>
