@@ -60,9 +60,14 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
             </td>
             <td>
                 <?php
-                $ranking = getRanking($result, $ga_site_domain);
+                $search_results = getSearchResultContent($result, $ga_site_domain);
+                $ranking = getRanking($search_results, $ga_site_domain);
                 echo $ranking;
-                $ranking_check_delay = rand(30,90);
+                $sitelinks = count(getSitelinks($search_results));
+                $all_ppc_ad_urls = getPaidSearchAds($search_results);
+                $own_ppc_ad_found = checkForOwnPpcAd($all_ppc_ad_urls, $ga_site_domain);
+                echo "\t".$own_ppc_ad_found;
+                $ranking_check_delay = rand(30,60);
                 sleep($ranking_check_delay);
                 ?>
             </td>
@@ -115,9 +120,11 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
             </td>
             <td>
                 <?php
-                $ranking = getRanking($result, $ga_site_domain);
+                $search_results = getSearchResultContent($result, $ga_site_domain);
+                $ranking = getRanking($search_results, $ga_site_domain);
                 echo $ranking;
-                $ranking_check_delay = rand(30,90);
+                $sitelinks = count(getSitelinks($search_results));
+                $ranking_check_delay = rand(30,60);
                 sleep($ranking_check_delay);
                 ?>
             </td>

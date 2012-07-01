@@ -3,6 +3,7 @@
 require('/rankings/extract-functions.php');
 
 $q = '';
+$d = 'www.kia.co.uk';
 
 function getSearchResultContent($query, $domain) {
     global $q;
@@ -74,9 +75,21 @@ function cleanseSitelinkURLs($numsitelinks) {
     return $sitelinks;
 }
 
-$content = getSearchResultContent('sunlife direct', 'www.sunlifedirect.co.uk');
+function checkForOwnPpcAd($urls_of_ppc_ads, $d) {
+    $url_found = 0;
+    foreach ($urls_of_ppc_ads as $value) {
+        echo $value;
+        echo $d;
+        if (strstr($value, $d)) {
+            $url_found = 1;
+        }
+    }
+    return $url_found;
+}
 
-echo "<h4># ranking position for the query '$q' : " . getRanking($content, 'www.sunlifedirect.co.uk') . "</h4>";
+$content = getSearchResultContent('kia cars', 'www.kia.co.uk');
+
+echo "<h4># ranking position for the query '$q' : " . getRanking($content, 'www.kia.co.uk') . "</h4>";
 
 $number_of_sitelinks = getSitelinks($content);
 echo "<h4># of sitelinks for the query '$q' : " . count($number_of_sitelinks) . "</h4>";
@@ -90,6 +103,7 @@ foreach ($urls_of_sitelinks as $value) {
 echo "<hr />";
 $urls_of_ppc_ads = getPaidSearchAds($content);
 echo "<h4># of PPC adc for query $q: " . count($urls_of_ppc_ads) . "</h4>";
+echo "<h4>Own PPC ad found: " . checkForOwnPpcAd($urls_of_ppc_ads, $d) . "</h4>";
 
 echo "PPC ad destination URLs for the query $q:";
 foreach ($urls_of_ppc_ads as $value) {
