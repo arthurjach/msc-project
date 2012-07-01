@@ -13,4 +13,8 @@ updateClickThroughRates($ga_profile_id);
 unset($_SESSION['profileid']);
 session_destroy();
 
+echo "<script type=\"text/javascript\">";
+echo "window.location = \"index.php\"";
+echo "</script>";
+
 ?>
