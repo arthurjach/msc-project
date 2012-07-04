@@ -19,6 +19,9 @@ function getQueryFilterBrandKeyword($profileid) {
     } else if ($profileid == 32497540){ 
         //eastcoast.co.uk
         return 'medium == organic && keyword != (not provided) && keyword =~ e(.*)co(.*)t || keyword =~ gner || keyword =~ e(.*)coa|cao';
+    } else if ($profileid == 53070092){ 
+        //liverpool-degrees.com
+        return 'medium == organic && keyword != (not provided) && keyword =~ liver(.*)deg || keyword =@ lau';
     }
 }
 
@@ -41,6 +44,9 @@ function getQueryFilterNonBrandKeyword($profileid) {
     } else if ($profileid == 32497540){ 
         //eastcoast.co.uk
         return 'medium == organic && keyword != (not provided) && keyword !~ e(.*)co(.*)t && keyword !~ gner && keyword !~ e(.*)coa|cao';
+    } else if ($profileid == 53070092){ 
+        //liverpool-degrees.com
+        return 'medium == organic && keyword != (not provided) && keyword !~ liver(.*)deg && keyword !@ lau';
     }
 }
 

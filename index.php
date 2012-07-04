@@ -41,6 +41,7 @@
                 <option>eastmidlandstrains.co.uk</option>
                 <option>mazumamobile.com</option>
                 <option>eastcoast.co.uk</option>
+                <option>liverpool-degrees.com</option>
             </select> <br />
             Max results: <input type="text" name="maxresult" id="maxresult" value="10" /><br />
             <button type="button" onclick="loadXMLDoc3('-visits')">Extract Visits and Rankings</button>
