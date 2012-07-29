@@ -10,8 +10,8 @@ function getQueryFilterBrandKeyword($profileid) {
     } else if ($profileid == 14000365){ 
         //sunlifedirect.co.uk
         return 'medium == organic && keyword != (not provided) && keyword =@ sun || keyword =@ axa';
-    } else if ($profileid == 5806854){ 
-        //eastmidlandstrains.co.uk
+    } else if ($profileid == 61072160){ 
+        //eastmidlandstrains.co.uk new
         return 'medium == organic && keyword != (not provided) && keyword =~ emt || keyword =~ e(.*)mid(.*)tra || keyword =~ mid(.*)main';
     } else if ($profileid == 1939940){ 
         //mazumamobile.com
@@ -35,8 +35,8 @@ function getQueryFilterNonBrandKeyword($profileid) {
     } else if ($profileid == 14000365){ 
         //sunlifedirect.co.uk
         return 'medium == organic && keyword != (not provided) && && keyword !@ sun && && keyword !@ axa';
-    } else if ($profileid == 5806854){ 
-        //eastmidlandstrains.co.uk
+    } else if ($profileid == 61072160){ 
+        //eastmidlandstrains.co.uk new
         return 'medium == organic && keyword != (not provided) && keyword !~ emt && keyword !~ e(.*)mid(.*)tra && keyword !~ mid(.*)main';
     } else if ($profileid == 1939940){ 
         //mazumamobile.com
