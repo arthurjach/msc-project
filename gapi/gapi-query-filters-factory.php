@@ -34,7 +34,7 @@ function getQueryFilterNonBrandKeyword($profileid) {
         return 'medium == organic && keyword != (not provided) && keyword !~ nat(.*)ex && keyword !~ e(.*)lin && keyword !~ n(.*)ress && keyword !~ national e(.*) && keyword !~ ex(.*)nat';
     } else if ($profileid == 14000365){ 
         //sunlifedirect.co.uk
-        return 'medium == organic && keyword != (not provided) && && keyword !@ sun && && keyword !@ axa';
+        return 'medium == organic && keyword != (not provided) && keyword !@ sun && && keyword !@ axa';
     } else if ($profileid == 61072160){ 
         //eastmidlandstrains.co.uk new
         return 'medium == organic && keyword != (not provided) && keyword !~ emt && keyword !~ e(.*)mid(.*)tra && keyword !~ mid(.*)main';
