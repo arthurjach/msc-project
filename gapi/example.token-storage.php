@@ -12,8 +12,8 @@
  * 
  */
 
-define('ga_email','arthurjach@googlemail.com');
-define('ga_password','skarbeczek1');
+define('ga_email','emailhere@googlemail.com');
+define('ga_password','passwordhere');
 
 require 'gapi.class.php';
 

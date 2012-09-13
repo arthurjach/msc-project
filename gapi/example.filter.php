@@ -1,7 +1,7 @@
 <?php
-define('ga_email','arthurjach@googlemail.com');
-define('ga_password','skarbeczek1');
-define('ga_profile_id','9913269');
+define('ga_email','emailhere@googlemail.com');
+define('ga_password','passwordhere');
+define('ga_profile_id','profileidhere');
 
 require 'gapi.class.php';
 

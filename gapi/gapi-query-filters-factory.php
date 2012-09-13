@@ -12,53 +12,41 @@
  * 
  */
 
+//please not that in order to keep the analysed data anonymous the keywords used
+// in this research have been removed from the final version of the code.
 function getQueryFilterBrandKeyword($profileid) {
     if ($profileid == 4570055){ 
-        //kia.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword =@ kia';
+        return 'medium == organic && keyword != (not provided) && keyword =@ INSERT_KEYWORD_HERE';
     } else if ($profileid == 47702481){ 
-        //nationalexpress.com
-        return 'medium == organic && keyword != (not provided) && keyword =~ nat(.*)ex || keyword =~ e(.*)lin || keyword =~ n(.*)ress || keyword =~ national e(.*) || keyword =~ ex(.*)nat';
+        return 'medium == organic && keyword != (not provided) && keyword =~ INSERT_KEYWORD_HERE || keyword =~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 14000365){ 
-        //sunlifedirect.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword =@ sun || keyword =@ axa';
+        return 'medium == organic && keyword != (not provided) && keyword =@ INSERT_KEYWORD_HERE || keyword =@ INSERT_KEYWORD_HERE';
     } else if ($profileid == 61072160){ 
-        //eastmidlandstrains.co.uk new
-        return 'medium == organic && keyword != (not provided) && keyword =~ emt || keyword =~ e(.*)mid(.*)tra || keyword =~ mid(.*)main';
+        return 'medium == organic && keyword != (not provided) && keyword =~ INSERT_KEYWORD_HERE || keyword =~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 1939940){ 
-        //mazumamobile.com
-        return 'medium == organic && keyword != (not provided) && keyword =~ m(.*)z(.*)a || keyword =~ mas(.*)a || keyword =~ maz';
+        return 'medium == organic && keyword != (not provided) && keyword =~ INSERT_KEYWORD_HERE || keyword =~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 32497540){ 
-        //eastcoast.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword =~ e(.*)co(.*)t || keyword =~ gner || keyword =~ e(.*)coa|cao';
+        return 'medium == organic && keyword != (not provided) && keyword =~ INSERT_KEYWORD_HERE || keyword =~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 53070092){ 
-        //liverpool-degrees.com
-        return 'medium == organic && keyword != (not provided) && keyword =~ liver(.*)deg || keyword =@ lau';
+        return 'medium == organic && keyword != (not provided) && keyword =~ INSERT_KEYWORD_HERE || keyword =@ INSERT_KEYWORD_HERE';
     }
 }
 
 function getQueryFilterNonBrandKeyword($profileid) {
     if ($profileid == 4570055){ 
-        //kia.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword !@ kia';
+        return 'medium == organic && keyword != (not provided) && keyword !@ INSERT_KEYWORD_HERE';
     }else if ($profileid == 47702481){ 
-        //nationalexpress.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword !~ nat(.*)ex && keyword !~ e(.*)lin && keyword !~ n(.*)ress && keyword !~ national e(.*) && keyword !~ ex(.*)nat';
+        return 'medium == organic && keyword != (not provided) && keyword !~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 14000365){ 
-        //sunlifedirect.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword !@ sun && keyword !@ axa';
+        return 'medium == organic && keyword != (not provided) && keyword !@ INSERT_KEYWORD_HERE';
     } else if ($profileid == 61072160){ 
-        //eastmidlandstrains.co.uk new
-        return 'medium == organic && keyword != (not provided) && keyword !~ emt && keyword !~ e(.*)mid(.*)tra && keyword !~ mid(.*)main';
+        return 'medium == organic && keyword != (not provided) && keyword !~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 1939940){ 
-        //mazumamobile.com
-        return 'medium == organic && keyword != (not provided) && keyword !~ m(.*)z(.*)a && keyword !~ mas(.*)a && keyword !~ maz';
+        return 'medium == organic && keyword != (not provided) && keyword !~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 32497540){ 
-        //eastcoast.co.uk
-        return 'medium == organic && keyword != (not provided) && keyword !~ e(.*)co(.*)t && keyword !~ gner && keyword !~ e(.*)coa|cao';
+        return 'medium == organic && keyword != (not provided) && keyword !~ INSERT_KEYWORD_HERE';
     } else if ($profileid == 53070092){ 
-        //liverpool-degrees.com
-        return 'medium == organic && keyword != (not provided) && keyword !~ liver(.*)deg && keyword !@ lau';
+        return 'medium == organic && keyword != (not provided) && keyword !~ INSERT_KEYWORD_HERE';
     }
 }
 

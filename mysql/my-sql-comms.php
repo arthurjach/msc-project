@@ -12,11 +12,11 @@
  * 
  */
 
-//DB access config
-$host = 'localhost';
-$user = 'root';
-$pass = 'skarb1';
-$schema = 'mscproject';
+//DB access config - must be edited in order to use with other databases
+$host = 'localhost'; //WAMP's default
+$user = 'root'; //WAMP's default
+$pass = '';
+$schema = 'mscproject'; //name of your database
 
 //Connect to the MySQL DB
 $link = mysqli_connect($host, $user, $pass, $schema);

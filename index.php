@@ -48,14 +48,16 @@
             End Date: <input type="text" name="enddate" id="enddate" value="<?php echo date("Y-m-d", time() - 60 * 60 * 24); ?>" /><br />
             <!-- Domain name: <input type="text" name="domaintocheck" id="domaintocheck" />--><br />
             Domain name:
+            <!-- Please note that in order to keep the data anonymous the following 
+            list of domains has been removed. In order to run the application this must be updated-->
             <select name="domaintocheck" id="domaintocheck">
-                <option>kia.co.uk</option>
-                <option>nationalexpress.com</option>
-                <option>sunlifedirect.co.uk</option>
-                <option>eastmidlandstrains.co.uk</option>
-                <option>mazumamobile.com</option>
-                <option>eastcoast.co.uk</option>
-                <option>liverpool-degrees.com</option>
+                <option>domain1.co.uk</option>
+                <option>domain2.com</option>
+                <option>domain3.co.uk</option>
+                <option>domain4.co.uk</option>
+                <option>domain5.com</option>
+                <option>domain6.co.uk</option>
+                <option>domain7.com</option>
             </select> <br />
             Max results: <input type="text" name="maxresult" id="maxresult" value="10" /><br />
             <button type="button" onclick="loadXMLDoc3('-visits')">Extract Visits and Rankings</button>
@@ -67,24 +69,6 @@
         <div id="myDiv"></div>
         <div id="myDiv2"></div>
 
-
-
-        <!-- 
-        <h1>JavaScript GA Authentication and Extraction</h1>
-        <button id="authButton">Loading...</button>
-        <div id="dataControls" style="display:none">
-            <p>
-                <button id="getAccount">Select Profile</button>
-            </p>
-
-            <p>
-                <button id="getData">Get Sample Report Data</button>
-            </p>
-        </div>
-        <div id="outputDiv"></div>
-        <img src="dummy.gif" style="display:none" alt="required for Google Data"/>
-        <hr />
-        -->
         <?php
         $_SESSION['email'] = $ga_email;
         $_SESSION['password'] = $ga_password;
