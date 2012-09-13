@@ -1,4 +1,18 @@
-<?php session_start(); ?>
+<?php session_start(); 
+
+/**
+ * The analysis of organic search click-through rates (CTR) 
+ * from different Google search result positionsGAPI - Google Analytics PHP Interface
+ * 
+ * https://github.com/arthurjach/msc-project
+ * 
+ * @copyright Artur Jach 2012
+ * @author Artur Jach <arthurjach@yahoo.co.uk>
+ * @version 1.0
+ * 
+ */
+
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>

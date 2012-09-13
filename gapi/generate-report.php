@@ -1,4 +1,17 @@
 <?php
+
+/**
+ * The analysis of organic search click-through rates (CTR) 
+ * from different Google search result positionsGAPI - Google Analytics PHP Interface
+ * 
+ * https://github.com/arthurjach/msc-project
+ * 
+ * @copyright Artur Jach 2012
+ * @author Artur Jach <arthurjach@yahoo.co.uk>
+ * @version 1.0
+ * 
+ */
+
 session_start();
 
 $ga_email = $_SESSION['email'];
@@ -197,7 +210,6 @@ $ga->requestReportData($ga_profile_id, array('keyword'), array('visits'), $sort_
             echo "<tr><td>$value</td></tr>";
         }
     }
-    //TERMINATE THE SESSION???
     ?>
 </table>
 <p><a href="https://adwords.google.com/select/KeywordToolExternal" target="_blank">AdWords Keywords Tool</a></p>
